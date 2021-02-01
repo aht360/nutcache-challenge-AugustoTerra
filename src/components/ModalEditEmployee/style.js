@@ -53,6 +53,7 @@ export const Form = styled.form`
             font-size: 14px;
             border: 1px solid #c2c2c2;
             border-radius: 4px;
+            
         }
     }
     .register-label-text{
