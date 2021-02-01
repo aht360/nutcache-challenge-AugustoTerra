@@ -30,7 +30,6 @@ const Modal = ({ children, isOpen, setIsOpen }) => {
           height: '600px',
           border: 'none',
           filter: 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.08))'
-    
         },
         overlay: {
           backgroundColor: 'rgba(0,0,0,0.5)',

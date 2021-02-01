@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import { FiUser, FiCalendar, FiUsers, FiMail } from 'react-icons/fi';
 import { Form } from './style';
-
+import { cpfMask } from '../../mask';
 
 const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleEditEmployee, employee }) => {
     
@@ -112,7 +112,7 @@ const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleEditEmployee, employee
                         type="text"
                         required
                         name="cpf"
-                        onChange={e => setCpf(e.target.value)}
+                        onChange={e => setCpf(cpfMask(e.target.value))}
                         value={cpf}
                     />
                 </div>
