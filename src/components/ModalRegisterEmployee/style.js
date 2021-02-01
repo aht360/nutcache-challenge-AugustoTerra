@@ -19,6 +19,27 @@ export const Form = styled.form`
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        .radio-container{
+            font-size: 14px;
+            display: flex;
+            justify-content: space-evenly;
+            
+            .radio-label{
+                display: flex;
+                justify-content: center;
+                width: 50px;
+                align-items: center;
+
+                p{
+                    margin-right: 5px;
+                }
+                input{
+                    width: 15px;
+                }
+            }
+        }
+
         input{
             width: 300px;
             height: 25px;

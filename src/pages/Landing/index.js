@@ -29,8 +29,11 @@ const Landing = () => {
         setLen(data.length)
     }
 
-    async function handleRegisterEmployee(name, birthdate, gender, email, cpf, startdate, team){
+    async function handleRegisterEmployee(name, birthdate, gender, email, cpf, startdate, team, hasTeam){
         try{
+            if(!hasTeam){
+                team = "-";
+            }
             await api.post('/nutemployee', {
                 name,
                 birthdate,
@@ -38,7 +41,8 @@ const Landing = () => {
                 email,
                 cpf,
                 startdate,
-                team
+                team,
+                hasTeam
             });
             const myPromise = fetchData();
     
@@ -69,8 +73,14 @@ const Landing = () => {
         
     }
 
-    async function handleEditEmployee(id, name, birthdate, gender, email, cpf, startdate, team){
+    async function handleEditEmployee(id, name, birthdate, gender, email, cpf, startdate, team, hasTeam){
         try{
+            if(!hasTeam){
+                team = "-";
+            }
+            if(hasTeam && team === "-"){
+                team = "Mobile";
+            }
             await api.put(`/nutemployee/${id}`, {
                 name,
                 birthdate,
@@ -78,7 +88,8 @@ const Landing = () => {
                 email,
                 cpf,
                 startdate,
-                team
+                team,
+                hasTeam
             })
             const myPromise = fetchData();
     

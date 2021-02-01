@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
-import { FiUser, FiCalendar, FiUsers, FiMail, FiXCircle } from 'react-icons/fi';
+import { FiUser, FiCalendar, FiUsers, FiMail, FiXCircle, FiBriefcase } from 'react-icons/fi';
 import { Form } from './style';
 import { cpfMask } from '../../mask';
 
@@ -14,10 +14,19 @@ const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleEditEmployee, employee
     const [ cpf, setCpf ] = useState(""); 
     const [ startdate, setStartdate ] = useState(""); 
     const [ team, setTeam ] = useState("Mobile"); 
+    const [ hasTeam, setHasTeam ] = useState(false);
 
     async function handleSubmit(e){
         e.preventDefault()
-        handleEditEmployee(id, name, birthdate, gender, email, cpf, startdate, team);
+        if(!hasTeam){
+            setTeam("-")
+        }
+        if(hasTeam && team === "-"){
+            setTeam("Mobile");
+        }
+        handleEditEmployee(id, name, birthdate, gender, email, cpf, startdate, team, hasTeam);
+        setCpf("");
+        setHasTeam(false);
         setIsOpen(false);
     }
 
@@ -31,6 +40,7 @@ const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleEditEmployee, employee
             setCpf(employee.cpf);
             setStartdate(employee.startdate);
             setTeam(employee.team);
+            setHasTeam(employee.hasTeam);
         }
     }, [employee])
 
@@ -133,21 +143,58 @@ const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleEditEmployee, employee
                         value={startdate}
                     />
                 </div>
-
                 <div className="register-label">
                     <div className="register-label-content">
-                        <FiUsers size={20} />
-                        <p className="register-label-text">
-                            Team:
+                        <FiBriefcase size={20} />
+                        <p className="register-label-text" >
+                            Has a team?
                         </p>
                     </div>
-                    <select name="team" id="team" onChange={e => setTeam(e.target.value)} value={team}>
-                        <option value="Mobile">Mobile</option>
-                        <option value="Frontend">Frontend</option>
-                        <option value="Backend">Backend</option>
-                        <option value="None">None</option>
-                    </select>
+                    <div className="radio-container">
+                        <div className="radio-label">
+                            <p className="radio-text">
+                                Yes
+                            </p>
+                            <input 
+                                type="radio"
+                                name="hasTeam"
+                                value={true}
+                                onChange={e => setHasTeam(true)}
+                                defaultChecked={hasTeam}
+                            />
+                        </div>
+                        <div className="radio-label">
+                            <p className="radio-text">
+                                No
+                            </p>
+                            <input 
+                                type="radio"
+                                name="hasTeam"
+                                defaultChecked={!hasTeam}
+                                value={false}
+                                onChange={e => setHasTeam(false)}
+                            />
+                        </div>
+                    </div>
+
                 </div>
+
+                {
+                    hasTeam &&
+                    <div className="register-label">
+                        <div className="register-label-content">
+                            <FiUsers size={20} />
+                            <p className="register-label-text">
+                                Team:
+                            </p>
+                        </div>
+                        <select name="team" id="team" onChange={e => setTeam(e.target.value)} value={team} >
+                            <option value="Mobile">Mobile</option>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                        </select>
+                    </div>
+                }
 
                 <button type="submit">Edit</button>
 
