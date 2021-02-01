@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '../Modal';
-import { FiUser, FiCalendar, FiUsers, FiMail } from 'react-icons/fi';
+import { FiUser, FiCalendar, FiUsers, FiMail, FiXCircle } from 'react-icons/fi';
 import { Form } from './style';
 import { cpfMask } from '../../mask';
 
@@ -18,12 +18,14 @@ const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleRegisterEmployee }) =>
     async function handleSubmit(e){
         e.preventDefault()
         handleRegisterEmployee(name, birthdate, gender, email, cpf, startdate, team);
+        setCpf("");
         setIsOpen(false);
     }
 
     return(
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
             <Form onSubmit={handleSubmit} >
+                <FiXCircle className="close-icon" onClick={ () => { setIsOpen(false) } } size={25} />
                 <h1>Register a new employee</h1>
                 <div className="register-label" style={{ marginTop: '15px' }} >
                     <div className="register-label-content">

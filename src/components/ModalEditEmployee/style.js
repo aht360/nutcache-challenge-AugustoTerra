@@ -59,4 +59,10 @@ export const Form = styled.form`
         border: none;
         border-radius: 8px; 
     }
+    .close-icon{
+        position: absolute;
+        left: 90%;
+        top: 10px;
+        cursor: pointer;
+    }
 `;

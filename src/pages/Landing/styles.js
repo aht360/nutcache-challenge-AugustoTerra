@@ -14,6 +14,7 @@ export const Container = styled.div`
         text-transform: uppercase;
         letter-spacing: 1px;
         margin: 10px 0;
+        text-align: center;
     }
     .cards-container{
         margin: 30px 0;
@@ -26,6 +27,13 @@ export const Container = styled.div`
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+
+        @media(max-width: 600px){
+            flex-direction: column;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+        
     }
     .register-btn{
         margin-top: 15px;
@@ -79,8 +87,6 @@ export const Container = styled.div`
             transition: all linear .3s;
         }
         input:focus{
-            border: 1px solid #c2c2c2;
-            filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.08));
             border: 1px solid #389488;
         }
     }
