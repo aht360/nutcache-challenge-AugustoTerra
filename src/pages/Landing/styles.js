@@ -64,6 +64,7 @@ export const Container = styled.div`
         font-size: 32px;
         font-weight: 500;
         letter-spacing: -1px;
+        text-align: center;
     }
     .container-employees-number{
         display: flex;
