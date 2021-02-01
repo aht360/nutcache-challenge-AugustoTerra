@@ -38,7 +38,7 @@ const ModalRegisterEmployee = ({ isOpen, setIsOpen, handleEditEmployee, employee
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} >
             <Form onSubmit={handleSubmit} >
                 <FiXCircle className="close-icon" onClick={ () => { setIsOpen(false) } } size={25} />
-                <h1>Edit a employee</h1>
+                <h1>Edit an employee</h1>
                 <div className="register-label" style={{ marginTop: '15px' }} >
                     <div className="register-label-content">
                         <FiUser size={20} />
