@@ -4,7 +4,7 @@ A web application made to facilitate people management. To organize employee inf
 
 ## Installation
 
-Go to [https://crudcrud.com/]() and copy the API key. 
+Go to [https://crudcrud.com/](https://crudcrud.com/) and copy the API key. 
 
 Clone the repository and enter the main folder.  
 Inside src/config.json paste the API key into KEY property.
