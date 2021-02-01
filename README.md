@@ -31,6 +31,10 @@ To run the project locally.
 4. List all registered employees
 5. Search for an employee by name
 
+## Preview
+
+A preview of this web application can be accessed [here](http://nutcache-employee.herokuapp.com/)
+
 #
 
 This app was made by Augusto Terra for front-end technical challenge from Nutcache company.
