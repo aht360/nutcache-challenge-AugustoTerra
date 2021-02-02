@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import ClipLoader from "react-spinners/ClipLoader";
 import { Container } from './styles';
 import Card from '../../components/Card';
 import ModalRegisterEmployee from '../../components/ModalRegisterEmployee';
@@ -18,6 +19,7 @@ const Landing = () => {
     const [ editingEmployee, setEditingEmployee ] = useState(null);
     const [ deletingEmployee, setDeletingEmployee ] = useState(null);
     const [ searchfield, setSearchfield ] = useState("");
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
         fetchData();
@@ -27,6 +29,7 @@ const Landing = () => {
         const { data } = await api.get('/nutemployee');
         setEmployees(data)
         setLen(data.length)
+        setLoading(false);
     }
 
     async function handleRegisterEmployee(name, birthdate, gender, email, cpf, startdate, team, hasTeam){
@@ -184,7 +187,13 @@ const Landing = () => {
                         ))
                     }
                     {
-                        filteredEmployees.length === 0 &&
+                        loading &&
+                        <div className="empty-employees">   
+                            <ClipLoader />
+                        </div>
+                    }
+                    {
+                        filteredEmployees.length === 0 && !loading &&
                         <div className="empty-employees">
                             <p className="empty-employees-text">
                                 No employee has been found
@@ -192,11 +201,14 @@ const Landing = () => {
                         </div>
                     }
                 </div>
+                {
+                    !loading &&
                 <div className="container-employees-number">
                     <p className="employees-number-text">
                         Employees found: {filteredEmployees.length}
                     </p>
                 </div>
+                }
             </Container>
             <Toaster
                 position="top-right"
